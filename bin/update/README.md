@@ -47,11 +47,11 @@ How over-the-air updates work on Umbrel.
 - [`/tmp/umbrel-vX.Y.Z/bin/update/00-run.sh`](https://github.com/mayankchhabra/umbrel/blob/ota-updates/bin/update/00-run.sh): Pre-update preparation script (does things like making a backup)
 - [`/tmp/umbrel-vX.Y.Z/bin/update/01-run.sh`](https://github.com/mayankchhabra/umbrel/blob/ota-updates/bin/update/01-run.sh): Install update script (installs the update)
 - [`/tmp/umbrel-vX.Y.Z/bin/update/02-run.sh`](https://github.com/mayankchhabra/umbrel/blob/ota-updates/bin/update/02-run.sh): Post-update script (used to run unit-tests to make sure the update was successfully installed)
-- [`/tmp/umbrel-vX.Y.Z/bin/update/03-run.sh`](https://github.com/mayankchhabra/umbrel/blob/ota-updates/bin/update/03-run.sh): Success script (runs after the updated has been successfully downloaded and installeed)
+- [`/tmp/umbrel-vX.Y.Z/bin/update/03-run.sh`](https://github.com/mayankchhabra/umbrel/blob/ota-updates/bin/update/03-run.sh): Success script (runs after the updated has been successfully downloaded and installed)
 
-All of the above scripts continuosly update `$UMBREL_ROOT/statuses/update-status.json` with the progress of update, which the dashboard periodically fetches every 2s via `umbrel-manager` to keep the user updated.
+All of the above scripts continuously update `$UMBREL_ROOT/statuses/update-status.json` with the progress of update, which the dashboard periodically fetches every 2s via `umbrel-manager` to keep the user updated.
 
 ### Limitations
 
 - There's currently no way to catch an error during the update and restore from the backup
-- There also needs to be a way to restore from the backup in case of a power-failure or intenional shutdown during the update process
+- There also needs to be a way to restore from the backup in case of a power-failure or intentional shutdown during the update process
