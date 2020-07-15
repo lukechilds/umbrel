@@ -38,7 +38,7 @@ How over-the-air updates work on Umbrel.
 
 14. `umbrel-manager` creates a signal file on the mounted host OS volume (`$UMBREL_ROOT/events/signals/update`) with the version `X.Y.Z`, and returns `OK` to the `umbrel-dashboard`.
 
-15. [`karen`](https://github.com/getumbrel/umbrel/blob/master/karen) is triggered (obviously) as soon as `$UMBREL_ROOT/events/signals/update` is touched/updated, and immeditaly runs the `update` trigger script [`$UMBREL_ROOT/events/triggers/update`](https://github.com/mayankchhabra/umbrel/blob/ota-updates/events/triggers/update) as root.
+15. [`karen`](https://github.com/getumbrel/umbrel/blob/master/karen) is triggered (obviously) as soon as `$UMBREL_ROOT/events/signals/update` is touched/updated, and immediately runs the `update` trigger script [`$UMBREL_ROOT/events/triggers/update`](https://github.com/mayankchhabra/umbrel/blob/ota-updates/events/triggers/update) as root.
 
 16. `$UMBREL_ROOT/events/triggers/update` clones release `vX.Y.Z` from github in `/tmp/umbrel-vX.Y.Z`.
 
