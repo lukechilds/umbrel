@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+UMBREL_ROOT="$(readlink -f $(dirname "${BASH_SOURCE[0]}")/../..)"
+BACKUP_FILE="${UMBREL_ROOT}/backup-restore.tar.gz.pgp"
+
+check_dependencies () {
+  for cmd in "$@"; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+      echo "This script requires \"${cmd}\" to be installed"
+      exit 1
+    fi
+  done
+}
+
+check_dependencies openssl tar gpg curl
+
+# Deterministically derives 128 bits of cryptographically secure entropy
+derive_entropy () {
+  identifier="${1}"
+  umbrel_seed=$(cat "${UMBREL_ROOT}/db/umbrel-seed/seed") || true
+
+  if [[ -z "$umbrel_seed" ]] || [[ -z "$identifier" ]]; then
+    >&2 echo "Missing derivation parameter, this is unsafe, exiting."
+    rm -f "${UMBREL_ROOT}/statuses/backup-in-progress"
+    exit 1
+  fi
+
+  # We need `sed 's/^.* //'` to trim the "(stdin)= " prefix from some versions of openssl
+  printf "%s" "${identifier}" | openssl dgst -sha256 -hmac "${umbrel_seed}" | sed 's/^.* //'
+}
+
+# Make sure a restore is not in progres
+if [[ -f "${UMBREL_ROOT}/statuses/restore-in-progress" ]]; then
+    echo "A restore is already in progress. Exiting now."
+    exit 1
+fi
+
+echo "Creating lock..."
+touch "${UMBREL_ROOT}/statuses/restore-in-progress"
+
+echo "Deriving keys..."
+
+backup_id=$(derive_entropy "umbrel_backup_id")
+encryption_key=$(derive_entropy "umbrel_backup_encryption_key")
+
+echo "Fetching backup..."
+
+BACKUP_API_URL="https://pvf3ozmmfl.execute-api.us-east-1.amazonaws.com/prod/v1/upload"
+if [[ $BITCOIN_NETWORK == "testnet" ]]; then
+    BACKUP_API_URL="https://as0ot0lg7h.execute-api.us-east-1.amazonaws.com/dev/v1/upload"
+fi
+if [[ $BITCOIN_NETWORK == "regtest" ]]; then
+    BACKUP_API_URL="https://5fxwqbum7g.execute-api.us-east-1.amazonaws.com/dev/v1/upload"
+fi
+
+curl --socks5 localhost:9150 "${BACKUP_API_URL}/${backup_id}"
+
+echo "Decrypting backup..."
+
+cat "${BACKUP_FILE}" | gpg \
+  --batch \
+  --decrypt \
+  --passphrase "${encryption_key}" \
+  | tar \
+  --extract \
+  --verbose \
+  --gzip
+
+# TODO: echo "Restoring backup..."
+
+echo "Removing lock..."
+rm -f "${UMBREL_ROOT}/statuses/restore-in-progress"
+
+echo "============================="
+echo "===== Restore successful ====="
+echo "============================="
+
+exit 0
