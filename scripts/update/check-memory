@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+UMBREL_ROOT=$1
+
+# Abort on low memory devices
+if true; then
+  memory_error="Sorry, this update isn't compatible with your device, it requires at least 2GB RAM."
+  echo "${memory_error}"
+  cat <<EOF > "$UMBREL_ROOT"/statuses/update-status.json
+{"state": "failed", "progress": 100, "description": "${memory_error}", "updateTo": ""}
+EOF
+  # Sleep for a few seconds so the failure gets a chance to be picked up by the UI
+  sleep 5
+  exit 1
+fi
