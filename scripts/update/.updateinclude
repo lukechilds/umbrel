@@ -1,4 +1,5 @@
 .env
+.gitkeep
 bitcoin/bitcoin.conf
 lnd/lnd.conf
 tor/torrc
