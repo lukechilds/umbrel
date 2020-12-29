@@ -24,30 +24,6 @@
         "defaultPassword": ""
     },
     {
-        "id": "btc-rpc-explorer",
-        "category": "Explorers",
-        "name": "BTC RPC Explorer",
-        "version": "2.0.2",
-        "tagline": "Simple, database-free blockchain explorer",
-        "description": "BTC RPC Explorer is a full-featured, self-hosted explorer for the Bitcoin blockchain. With this explorer, you can explore not just the blockchain database, but also explore the functional capabilities of your Umbrel.\n\nIt comes with a network summary dashboard, detailed view of blocks, transactions, addresses, along with analysis tools for viewing stats on miner activity, mempool summary, with fee, size, and age breakdowns. You can also search by transaction ID, block hash/height, and addresses.\n\nIt's time to appreciate the \"fullness\" of your node.",
-        "developer": "Dan Janosik",
-        "website": "https://explorer.btc21.org",
-        "dependencies": [
-            "bitcoind",
-            "electrum"
-        ],
-        "repo": "https://github.com/janoside/btc-rpc-explorer",
-        "support": "https://github.com/janoside/btc-rpc-explorer/discussions",
-        "port": 3002,
-        "gallery": [
-            "1.jpg",
-            "2.jpg",
-            "3.jpg"
-        ],
-        "path": "",
-        "defaultPassword": ""
-    },
-    {
         "id": "specter-desktop",
         "category": "Wallets",
         "name": "Specter Desktop",
@@ -71,31 +47,8 @@
         "defaultPassword": ""
     },
     {
-        "id": "ride-the-lightning",
-        "category": "Lightning",
-        "name": "Ride The Lightning",
-        "version": "0.10.0-beta",
-        "tagline": "A powerful dashboard for the Lightning Network",
-        "description": "RTL is a full function, device agnostic, web user interface to help manage lightning node operation. It enables full control over your lightning node with rich functionality for Bitcoin base layer and Lightning Network. Some cool features available on RTL are:\n\n- Rich dashboard with two layout options\n- Send/Receive funds on-chain\n- Rich channel management with advanced features like balance score, circular re-balancing etc.\n- Payments and Invoice management with QR codes\n- Routing analysis for the payments forwarded\n- Channel backups\n- Detailed reports on routing and transaction history\n- Optional Loop interface for submarine swaps\n- Customizable UI with multiple color schemes and dark/light modes",
-        "developer": "Shahana and Suheb",
-        "website": "https://github.com/Ride-The-Lightning/RTL",
-        "dependencies": [
-            "lnd"
-        ],
-        "repo": "https://github.com/Ride-The-Lightning/RTL",
-        "support": "https://github.com/Ride-The-Lightning/RTL/issues/new",
-        "port": 3001,
-        "gallery": [
-            "1.jpg",
-            "2.jpg",
-            "3.jpg"
-        ],
-        "path": "",
-        "defaultPassword": "moneyprintergobrrr"
-    },
-    {
         "id": "sphinx-relay",
-        "category": "Lightning",
+        "category": "Messaging",
         "name": "Sphinx Relay",
         "version": "1.2.9",
         "tagline": "Chat and pay over the Lightning Network",
@@ -117,8 +70,54 @@
         "defaultPassword": ""
     },
     {
+        "id": "ride-the-lightning",
+        "category": "Node management",
+        "name": "Ride The Lightning",
+        "version": "0.10.0-beta",
+        "tagline": "A powerful dashboard for the Lightning Network",
+        "description": "RTL is a full function, device agnostic, web user interface to help manage lightning node operation. It enables full control over your lightning node with rich functionality for Bitcoin base layer and Lightning Network. Some cool features available on RTL are:\n\n- Rich dashboard with two layout options\n- Send/Receive funds on-chain\n- Rich channel management with advanced features like balance score, circular re-balancing etc.\n- Payments and Invoice management with QR codes\n- Routing analysis for the payments forwarded\n- Channel backups\n- Detailed reports on routing and transaction history\n- Optional Loop interface for submarine swaps\n- Customizable UI with multiple color schemes and dark/light modes",
+        "developer": "Shahana and Suheb",
+        "website": "https://github.com/Ride-The-Lightning/RTL",
+        "dependencies": [
+            "lnd"
+        ],
+        "repo": "https://github.com/Ride-The-Lightning/RTL",
+        "support": "https://github.com/Ride-The-Lightning/RTL/issues/new",
+        "port": 3001,
+        "gallery": [
+            "1.jpg",
+            "2.jpg",
+            "3.jpg"
+        ],
+        "path": "",
+        "defaultPassword": "moneyprintergobrrr"
+    },
+    {
+        "id": "lightning-terminal",
+        "category": "Node management",
+        "name": "Lightning Terminal",
+        "version": "0.3.4-alpha",
+        "tagline": "The easiest way to manage channel liquidity",
+        "description": "Lightning Terminal is the easiest way to manage inbound and outbound liquidity on the Lightning Network. Keep your channels open and the funds flowing. It provides a visual interface for interacting with your channels and balances using Loop. Making the process of managing your funds easier and more intuitive allows you to focus on running your business, not on your liquidity. Loop is the first of several upcoming Terminal features that enable new use cases and open up a new world of possibilities on Lightning.\n\nWhy use Loop?\n\n- Add \"inbound liquidity\" to receive payments\n- Reduce transaction fees by recycling and reusing Lightning channels\n- Send funds to and from users or services that aren't yet Lightning enabled\n- Configurable wait times and \"batching\" allow for further fee savings\n- Refill and offload funds from any number of Lightning channels in a single on-chain transaction\n\nPricing:\n\nLoop Out: 0.05-0.5%\nLoop In: 0.10-1%\nLoop pricing varies based on wait time and on-chain fee conditions.",
+        "developer": "Lightning Labs",
+        "website": "https://lightning.engineering",
+        "dependencies": [
+            "lnd"
+        ],
+        "repo": "https://github.com/lightninglabs/lightning-terminal",
+        "support": "https://github.com/lightninglabs/lightning-terminal/issues/new",
+        "port": 3004,
+        "gallery": [
+            "1.jpg",
+            "2.jpg",
+            "3.jpg"
+        ],
+        "path": "",
+        "defaultPassword": "moneyprintergobrrr"
+    },
+    {
         "id": "thunderhub",
-        "category": "Lightning",
+        "category": "Node management",
         "name": "ThunderHub",
         "version": "0.12.1",
         "tagline": "Take full control of your Lightning node",
@@ -140,26 +139,27 @@
         "defaultPassword": "moneyprintergobrrr"
     },
     {
-        "id": "lightning-terminal",
-        "category": "Lightning",
-        "name": "Lightning Terminal",
-        "version": "0.3.4-alpha",
-        "tagline": "The easiest way to manage channel liquidity",
-        "description": "Lightning Terminal is the easiest way to manage inbound and outbound liquidity on the Lightning Network. Keep your channels open and the funds flowing. It provides a visual interface for interacting with your channels and balances using Loop. Making the process of managing your funds easier and more intuitive allows you to focus on running your business, not on your liquidity. Loop is the first of several upcoming Terminal features that enable new use cases and open up a new world of possibilities on Lightning.\n\nWhy use Loop?\n\n- Add \"inbound liquidity\" to receive payments\n- Reduce transaction fees by recycling and reusing Lightning channels\n- Send funds to and from users or services that aren't yet Lightning enabled\n- Configurable wait times and \"batching\" allow for further fee savings\n- Refill and offload funds from any number of Lightning channels in a single on-chain transaction\n\nPricing:\n\nLoop Out: 0.05-0.5%\nLoop In: 0.10-1%\nLoop pricing varies based on wait time and on-chain fee conditions.",
-        "developer": "Lightning Labs",
-        "website": "https://lightning.engineering",
+        "id": "btc-rpc-explorer",
+        "category": "Explorers",
+        "name": "BTC RPC Explorer",
+        "version": "2.0.2",
+        "tagline": "Simple, database-free blockchain explorer",
+        "description": "BTC RPC Explorer is a full-featured, self-hosted explorer for the Bitcoin blockchain. With this explorer, you can explore not just the blockchain database, but also explore the functional capabilities of your Umbrel.\n\nIt comes with a network summary dashboard, detailed view of blocks, transactions, addresses, along with analysis tools for viewing stats on miner activity, mempool summary, with fee, size, and age breakdowns. You can also search by transaction ID, block hash/height, and addresses.\n\nIt's time to appreciate the \"fullness\" of your node.",
+        "developer": "Dan Janosik",
+        "website": "https://explorer.btc21.org",
         "dependencies": [
-            "lnd"
+            "bitcoind",
+            "electrum"
         ],
-        "repo": "https://github.com/lightninglabs/lightning-terminal",
-        "support": "https://github.com/lightninglabs/lightning-terminal/issues/new",
-        "port": 3004,
+        "repo": "https://github.com/janoside/btc-rpc-explorer",
+        "support": "https://github.com/janoside/btc-rpc-explorer/discussions",
+        "port": 3002,
         "gallery": [
             "1.jpg",
             "2.jpg",
             "3.jpg"
         ],
         "path": "",
-        "defaultPassword": "moneyprintergobrrr"
+        "defaultPassword": ""
     }
 ]
