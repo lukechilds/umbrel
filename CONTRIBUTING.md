@@ -4,7 +4,7 @@
 
 A great way to contribute to Umbrel is to participate in PR review. Anyone is welcome to checkout a PR branch, test it, and leave their feedback.
 
-It's important to actually pulled down the code and tested the changes before leaving a review.
+It's important to pull down the code and test the changes before leaving a review.
 
 PR review is the bottleneck of Umbrel development so help with PR review is greatly appreciated.
 
@@ -46,7 +46,7 @@ You can set this up by creating an account on Docker Hub and generating an API k
 
 Now each time you push to a branch on your fork a new Docker image will be published on Docker Hub at `$DOCKER_HUB_USER/$REPO_NAME:$BRANCH_NAME` that anyone can pull down and test.
 
-It's helpful if you drop your Docker Hub username in the PR description to so reviewers know where to pull the images from.
+It's helpful if you drop your Docker Hub username in the PR description too so reviewers know where to pull the images from.
 
 #### Keep PRs focused on a single concern
 
