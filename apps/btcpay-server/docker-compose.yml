@@ -7,6 +7,16 @@ x-logging:
     tag: "umbrel-app {{.Name}}"
 
 services:
+  caddy:
+    image: caddy:2.3.0
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ${APP_DATA_DIR}/data/caddy/data:/data
+      - ${APP_DATA_DIR}/data/caddy/config:/config
+    command: caddy reverse-proxy --from example.com --to $APP_BTCPAY_SERVER_IP:$APP_BTCPAY_SERVER_PORT
+
   nbxplorer:
     image: "nicolasdorier/nbxplorer:2.1.49@sha256:b247343d3127c737ed2ce250e780e52a958241fff1d897a5b6e8cd20fb5f142a"
     user: "1000:1000"
