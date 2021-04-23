@@ -179,7 +179,7 @@ main () {
   block_device=$(list_block_devices)
   partition_path="/dev/${block_device}1"
   block_device_model=$(get_block_device_model $block_device)
-  echo "Found device \"${block_device_model}\""
+  echo "Found device \"${block_device_model}\" at device \"${block_device}\""
 
   echo "Blacklisting USB device IDs against UAS driver..."
   blacklist_uas
@@ -188,9 +188,10 @@ main () {
   retry_for_usb_devices=1
   while [[ ! -e "${partition_path}" ]]; do
     retry_for_usb_devices=$(( $retry_for_usb_devices + 1 ))
-    if [[ $retry_for_usb_devices -gt 10 ]]; then
+    if [[ $retry_for_usb_devices -gt 60 ]]; then
       echo "USB devices weren't registered after 10 tries..."
       echo "Exiting mount script without doing anything"
+      list_block_devices
       exit 1
     fi
 
@@ -205,16 +206,16 @@ main () {
     mount_partition "${partition_path}"
 
     echo "Checking if device contains an Umbrel install..."
-    
+
     if [[ -f "${EXTERNAL_UMBREL_ROOT}"/.umbrel ]]; then
       echo "Yes, it contains an Umbrel install"
-    else 
+    else
       echo "No, it doesn't contain an Umbrel install"
       echo "Unmounting partition..."
       unmount_partition
       setup_new_device $block_device $partition_path
     fi
-    
+
   else
     echo "No, it's not ext4"
     setup_new_device $block_device $partition_path
