@@ -82,6 +82,10 @@ echo "Starting memory monitor..."
 echo
 ./scripts/memory-monitor &>> "${UMBREL_LOGS}/memory-monitor.log" &
 
+echo "Starting network monitor..."
+echo
+./scripts/network-monitor &>> "${UMBREL_LOGS}/network-monitor.log" &
+
 echo "Starting backup monitor..."
 echo
 ./scripts/backup/monitor &>> "${UMBREL_LOGS}/backup-monitor.log" &

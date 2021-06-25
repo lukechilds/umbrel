@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+UMBREL_ROOT="$(readlink -f $(dirname "${BASH_SOURCE[0]}")/..)"
+
+
+if [[ $UID != 0 ]]; then
+    echo "Network monitor must be run as root"
+    exit 1
+fi
+
+check_if_not_already_running() {
+  if ps ax | grep $0 | grep -v $$ | grep bash | grep -v grep
+  then
+    echo "Network monitor is already running"
+    exit 1
+  fi
+}
+
+check_network() {
+  ifconfig eth0 | grep --quiet 'inet ' && echo true || echo false
+}
+
+log () {
+  echo "$(date "+%Y-%m-%d %H:%M:%S") ${@}"
+}
+
+check_if_not_already_running
+log "Network monitor running!"
+
+network_is_up_previous=false
+while true; do
+  network_is_up=$(check_network)
+  if [[ "${network_is_up_previous}" = "true" ]] && [[ "${network_is_up}" = "false" ]]; then
+    log "Network failed, rebooting..."
+    reboot
+  fi
+  network_is_up_previous=$network_is_up
+  sleep 60
+done

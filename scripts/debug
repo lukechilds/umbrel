@@ -131,6 +131,11 @@ echo
 tail -n 50 logs/karen.log | sed '/onion/d'
 
 echo
+echo "Network monitor logs"
+echo "-------------------"
+tail -n 10 "${UMBREL_ROOT}/logs/network-monitor.log"
+
+echo
 echo "Docker containers"
 echo "-----------------"
 
